@@ -20,7 +20,7 @@
 			Connects SonarQube to TeamForge to automatically create artifacts.
 		</description>
 		<scm.url>https://github.com/SonarTeamforgeSource/stf</scm.url>
-	    <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
 	</properties>
 
 
@@ -146,11 +146,11 @@
 		<!-- <dependency> <groupId>org.kohsuke.stapler</groupId> <artifactId>stapler</artifactId> 
 			<version>1.223</version> </dependency> -->
 
-<dependency>
-<groupId>commons-discovery</groupId>
-<artifactId>commons-discovery</artifactId>
-<version>0.5</version>
-</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.5</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -179,7 +179,7 @@
 						</goals>
 						<configuration>
 							<outputDirectory>
-								${project.build.directory}/classes/lib/
+								${project.build.directory}/classes/META-INF/lib/
 							</outputDirectory>
 						</configuration>
 					</execution>
@@ -195,10 +195,10 @@
 					<archive>
 						<manifest>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-			
-                <addClasspath>true</addClasspath>
-                <classpathPrefix>lib/</classpathPrefix>
-			
+
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+
 						</manifest>
 						<manifestEntries>
 							<Build-Date>${maven.build.timestamp}</Build-Date>
@@ -212,6 +212,10 @@
 							<Plugin-Developers>Jaroslaw Nowosad</Plugin-Developers>
 							<Plugin-Homepage>${homepage}</Plugin-Homepage>
 							<Plugin-IssueTrackerUrl>${issueTracker}</Plugin-IssueTrackerUrl>
+
+							<Plugin-Dependencies>
+								META-INF/lib/axis-1.4.jar META-INF/lib/axis-jaxrpc-1.4.jar META-INF/lib/axis-saaj-1.4.jar META-INF/lib/commons-io-2.1.jar META-INF/lib/commons-lang-2.6.jar META-INF/lib/httpclient-contrib-ssl-1.0.jar META-INF/lib/cubit-rest-connector-1.0.jar META-INF/lib/sf_soap50_sdk-1.2.jar META-INF/lib/commons-discovery-0.5.jar META-INF/lib/commons-logging-1.1.1.jar
+							</Plugin-Dependencies>
 
 							<Plugin-Key>teamforge</Plugin-Key>
 							<Plugin-License>GNU LGPL 3</Plugin-License>
@@ -231,6 +235,6 @@
 
 		</plugins>
 	</build>
-	
+
 
 </project>

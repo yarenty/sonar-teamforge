@@ -81,10 +81,9 @@ public class LinkFunction implements Function, ServerExtension {
 	protected String generateCommentText(CTFArtifact artifact, Context context) {
 		StringBuilder message = new StringBuilder();
 		message.append("Issue linked to TeamForge artifact: ");
-		message.append(context.projectSettings().getString(
-				TeamForgeConstants.SERVER_URL_PROPERTY));
-		message.append("/browse/"); // TODO: CHANGE LINK!!!
-		message.append(artifact.getId());
+		message.append( artifact.getId());
+		message.append( " link: " );
+		message.append( artifact.getURL());
 		return message.toString();
 	}
 

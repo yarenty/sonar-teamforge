@@ -63,35 +63,27 @@ public class TeamForgeArtifactCreator implements ServerExtension {
 		String tracker = settings
 				.getString(TeamForgeConstants.TEAMFORGE_TRACKER_NAME);
 
-		LOG.info("URL::" + url);
-		LOG.info("username::" + username);
-		LOG.info("password::" + password);
-		LOG.info("Connecting to:" + project);
-		LOG.info("tracker::" + tracker);
-		LOG.info("title::" + generateIssueSummary(sonarIssue));
-		LOG.info("desc::" + generateIssueDescription(sonarIssue, settings));
-		LOG.info("priority::"
+		LOG.debug("URL::" + url);
+		//LOG.debug("username::" + username);
+		//LOG.debug("password::" + password);
+		LOG.debug("project:" + project);
+		LOG.debug("tracker::" + tracker);
+		LOG.debug("title::" + generateIssueSummary(sonarIssue));
+		LOG.debug("desc::" + generateIssueDescription(sonarIssue, settings));
+		LOG.debug("priority::"
 				+ sonarSeverityToTFPriorityId(
 						RulePriority.valueOf(sonarIssue.severity()), settings));
 
 		CollabNetApp cna;
-
-		LOG.debug("URL::" + url);
-		LOG.debug("username::" + username);
-		LOG.debug("password::" + password);
-
 		cna = new CollabNetApp(url, username, password);
 
 		CTFArtifact artifact = null;
-		LOG.debug("Connecting to:" + project);
 
 		// CTFProject p = cna.getProjectById("proj1552");
 		CTFProject p = cna.getProjectByTitle(project);
 
 		List<CTFTracker> ctfTrackers = p.getTrackers();
 		for (CTFTracker t : ctfTrackers) {
-			System.out.println(t.getId() + "==" + t.getTitle());
-
 			if (t.getTitle().equals(tracker)) {
 				artifact = t.createArtifact(
 						generateIssueSummary(sonarIssue),
@@ -105,7 +97,7 @@ public class TeamForgeArtifactCreator implements ServerExtension {
 								settings), 0, null, null, null, null, null,
 						null);
 
-				LOG.info("CREATED!!:" + artifact.getId() + ">>"
+				LOG.debug("CREATED!!:" + artifact.getId() + ">>"
 						+ artifact.getTitle() + "\n Decription:"
 						+ artifact.getDescription() + "\n url="
 						+ artifact.getURL() + " path=" + artifact.getPath()
@@ -116,34 +108,18 @@ public class TeamForgeArtifactCreator implements ServerExtension {
 		return artifact;
 	}
 
-	protected CTFArtifact sendRequest(CollabNetApp jiraSoapService,
-			String jiraUrl, String userName) {
-		try {
-			CTFProject project = jiraSoapService.getProjectById("1");
-			CTFTracker tracker = project.createTracker("name", "title",
-					"description");
-			CTFArtifact artifact = tracker.createArtifact("title",
-					"description", "group", "category", "status", "customer",
-					0, 0, "assignTo", "releaseId", null, "fileName",
-					"fileMimeType", null);
-
-			return artifact;
-		} catch (RemoteException e) {
-			throw new IllegalStateException(
-					"Impossible to create the issue on the TEAMFORGE server ("
-							+ jiraUrl + ")", e);
-		}
-	}
 
 	protected String generateIssueSummary(Issue sonarIssue) {
 		Rule rule = ruleFinder.findByKey(sonarIssue.ruleKey());
 
-		StringBuilder summary = new StringBuilder("SonarQube Issue #");
-		summary.append(sonarIssue.key());
+		StringBuilder summary = new StringBuilder("SonarQube Issue ");
 		if (rule != null && rule.getName() != null) {
 			summary.append(" - ");
 			summary.append(rule.getName().toString());
 		}
+		summary.append(" (#");
+		summary.append(sonarIssue.key());
+		summary.append(")");
 		return summary.toString();
 	}
 
