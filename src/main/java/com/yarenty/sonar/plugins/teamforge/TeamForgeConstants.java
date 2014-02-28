@@ -7,7 +7,7 @@ package com.yarenty.sonar.plugins.teamforge;
 
 public final class TeamForgeConstants {
 
-  public static final String SONAR_ISSUE_DATA_PROPERTY_KEY = "teamforge-issue-key";
+	public static final String SONAR_ISSUE_DATA_PROPERTY_KEY = "teamforge-issue-key";
 
   // ===================== PLUGIN PROPERTIES =====================
 

@@ -22,6 +22,7 @@ public class CTFFile extends CTFObject {
      * Retrieves the file.
      */
     public InputStream download() throws IOException {
-        return app.getFileStorageAppSoap().downloadFile(app.getSessionId(),getId()).getInputStream();
+		return app.getFileStorageAppSoap()
+				.downloadFile(app.getSessionId(), getId()).getInputStream();
     }
 }
