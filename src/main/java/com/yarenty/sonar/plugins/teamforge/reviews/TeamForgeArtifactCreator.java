@@ -88,10 +88,6 @@ public class TeamForgeArtifactCreator implements ServerExtension {
 		// CTFProject p = cna.getProjectById("proj1552");
 		CTFProject p = cna.getProjectByTitle(project);
 
-		System.out.println("=>>>>>>>>> " + project + "!!!!");
-
-		System.out.println("=>>>>>>>>> GCE!!!! TRACKERS:");
-
 		List<CTFTracker> ctfTrackers = p.getTrackers();
 		for (CTFTracker t : ctfTrackers) {
 			System.out.println(t.getId() + "==" + t.getTitle());
@@ -109,7 +105,7 @@ public class TeamForgeArtifactCreator implements ServerExtension {
 								settings), 0, null, null, null, null, null,
 						null);
 
-				System.out.println("CREATED!!:" + artifact.getId() + ">>"
+				LOG.info("CREATED!!:" + artifact.getId() + ">>"
 						+ artifact.getTitle() + "\n Decription:"
 						+ artifact.getDescription() + "\n url="
 						+ artifact.getURL() + " path=" + artifact.getPath()
