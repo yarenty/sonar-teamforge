@@ -14,7 +14,7 @@
 		<organization.url>http://www.yarenty.com</organization.url>
 		<sonar.version>3.6</sonar.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<issueTracker>http://jira.codehaus.org/browse/SONARJAVA</issueTracker>
+		<issueTracker>https://code.google.com/p/sonar-teamforge/issues/list</issueTracker>
 		<homepage>http://github.com/java/sonar-teamforge-plugin</homepage>
 		<description>
 			Connects SonarQube to TeamForge to automatically create artifacts.
@@ -24,13 +24,13 @@
 	</properties>
 
 
-	<name>${name}</name>
-	<url>${homepage}</url>
-	<description>${description}</description>
+	<name>Sonar TeamForge Plugin</name>
+	<url>https://code.google.com/p/sonar-teamforge</url>
+	<description>Integration between SonarQube and TeamForge.</description>
 
 	<organization>
-		<name>${organization}</name>
-		<url>${organization.url}</url>
+		<name>YarentY</name>
+		<url>http://www.yarenty.com</url>
 	</organization>
 
 	<licenses>
@@ -51,13 +51,15 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git@github.com:SonarCommunity/sonar-teamforge.git</connection>
-		<developerConnection>scm:git:git@github.com:SonarCommunity/sonar-teamforge.git</developerConnection>
-		<url>${scm.url}</url>
+		<connection>git clone https://yarenty@code.google.com/p/sonar-teamforge/ </connection>
+		<url>https://yarenty@code.google.com/p/sonar-teamforge/</url>
 		<tag>HEAD</tag>
 	</scm>
 
-
+	<issueManagement>
+		<url>https://code.google.com/p/sonar-teamforge/issues/list</url>
+		<system>Google code hub</system>
+	</issueManagement>
 
 	<repositories>
 		<repository>
@@ -229,4 +231,6 @@
 
 		</plugins>
 	</build>
+	
+
 </project>
