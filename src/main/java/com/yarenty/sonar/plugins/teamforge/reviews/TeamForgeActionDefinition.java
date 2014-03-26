@@ -19,7 +19,7 @@ public final class TeamForgeActionDefinition implements ServerExtension {
 	private final Actions actions;
 	private final LinkFunction linkFunction;
 
-	public TeamForgeActionDefinition(Actions actions, LinkFunction linkFunction) {
+	public TeamForgeActionDefinition(final Actions actions, final LinkFunction linkFunction) {
 		this.actions = actions;
 		this.linkFunction = linkFunction;
 	}

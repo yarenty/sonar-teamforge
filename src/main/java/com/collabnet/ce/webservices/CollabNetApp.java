@@ -455,6 +455,7 @@ public class CollabNetApp {
 	/**
 	 * Retrieves the user, or null if no such user exists.
 	 */
+	
 	public CTFUser getUser(String username) throws RemoteException {
 		try {
 			return new CTFUser(this, this.icns.getUserData(getSessionId(),
