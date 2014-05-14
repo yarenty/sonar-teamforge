@@ -15,7 +15,7 @@ import static org.mockito.Mockito.mock;
 public class TeamForgeActionDefinitionTest {
 
   @Test
-  public void check_start() throws Exception {
+  public void givenAction_whenStart_thenLinkExist() throws Exception {
     Actions actions = new Actions();
     LinkFunction function = mock(LinkFunction.class);
 

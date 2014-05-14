@@ -89,7 +89,7 @@ public class TeamForgeArtifactCreatorTest {
   }
 
   @Test (expected = AxisFault.class)
-  public void shouldCreateCollabNetConnection() throws Exception {
+  public void givenConnection_whenNotTFServer_thenThrowAxisFault() throws Exception {
 	 //assumption: there are no server named http://my.server
     tfArtifactCreator.connect(settings);
   }
@@ -99,7 +99,7 @@ public class TeamForgeArtifactCreatorTest {
 
  
   @Test(expected = RemoteException.class)
-  public void shouldFailToCreateConnectionWithIncorrectUrl() throws Exception {
+  public void givenConnection_whenBadURL_thenThrowRemoteException() throws Exception {
     settings.removeProperty(TeamForgeConstants.SERVER_URL_PROPERTY);
     settings.appendProperty(TeamForgeConstants.SERVER_URL_PROPERTY, "my.server");
 
@@ -109,7 +109,7 @@ public class TeamForgeArtifactCreatorTest {
   
 
   @Test
-  public void shouldCreateIssue() throws Exception {
+  public void givenTFInstance_whenCreateIssue_thenArtifactCreated() throws Exception {
     // Given that
     cna = mock (CollabNetApp.class);    
     project = mock(CTFProject.class);
@@ -145,7 +145,7 @@ public class TeamForgeArtifactCreatorTest {
 
  
   @Test
-  public void shouldGiveDefaultDescription() throws Exception {
+  public void givenArtifactCreator_whenCreateDescription_thenReturnFormattedDescription() throws Exception {
     // Verify
 	  assertThat(tfArtifactCreator.generateIssueDescription(sonarIssue, settings))
 		  .isEqualTo("Issue detail:\n{quote}\nThe Cyclomatic Complexity of this method is 14 which is greater than 10 authorized.\n" +
@@ -153,7 +153,7 @@ public class TeamForgeArtifactCreatorTest {
   }  
 
   @Test
-  public void shouldGiveDefaultSummary() throws Exception {
+  public void givenArtifactCreator_whenGenerateSummary_thenRDefaultSummary() throws Exception {
     assertThat(tfArtifactCreator.generateIssueSummary(sonarIssue))
     .isEqualTo("SonarQube Issue - Avoid cycle between java packages (#ABCD)");
  
@@ -162,7 +162,7 @@ public class TeamForgeArtifactCreatorTest {
   
   
   @Test
-  public void shouldGiveDefaultPriority() throws Exception {
+  public void givenArtifactCreator_whenPrioritySet_thenReturnDefaultPriority() throws Exception {
     assertThat(tfArtifactCreator.sonarSeverityToTFPriorityId(RulePriority.BLOCKER, settings)).isEqualTo(1);
     assertThat(tfArtifactCreator.sonarSeverityToTFPriorityId(RulePriority.CRITICAL, settings)).isEqualTo(2);
     assertThat(tfArtifactCreator.sonarSeverityToTFPriorityId(RulePriority.MAJOR, settings)).isEqualTo(3);
@@ -172,35 +172,35 @@ public class TeamForgeArtifactCreatorTest {
   
   
   @Test
-  public void checkTeamForgePriotityIdForSeverityBLOCKER() {
+  public void givenArtifactCreator_whenPriorityBLOCKER_thenSeverity1() {
 	
 	  assertEquals("Sonar severity BLOCKER should be 1",1, 
 			  tfArtifactCreator.sonarSeverityToTFPriorityId(RulePriority.BLOCKER, settings));
   }
   
   @Test
-  public void checkTeamForgePriotityIdForSeverityCRITICAL() {
+  public void givenArtifactCreator_whenPriorityCRITICAL_thenSeverity2() {
 	
 	  assertEquals("Sonar severity CRITICAL should be 2",2, 
 			  tfArtifactCreator.sonarSeverityToTFPriorityId(RulePriority.CRITICAL, settings));
   }
 
   @Test
-  public void checkTeamForgePriotityIdForSeverityMAJOR() {
+  public void givenArtifactCreator_whenPriorityMAJOR_thenSeverity3() {
 	
 	  assertEquals("Sonar severity MAJOR should be 3",3, 
 			  tfArtifactCreator.sonarSeverityToTFPriorityId(RulePriority.MAJOR, settings));
   }
   
   @Test
-  public void checkTeamForgePriotityIdForSeverityMINOR() {
+  public void givenArtifactCreator_whenPriorityMINOR_thenSeverity4() {
 	
 	  assertEquals("Sonar severity MINOR should be 4",4, 
 			  tfArtifactCreator.sonarSeverityToTFPriorityId(RulePriority.MINOR, settings));
   }
   
   @Test
-  public void checkTeamForgePriotityIdForSeverityINFO() {
+  public void givenArtifactCreator_whenPriorityINFO_thenSeverity5() {
 	
 	  assertEquals("Sonar severity INFO should be 5",5, 
 			  tfArtifactCreator.sonarSeverityToTFPriorityId(RulePriority.INFO, settings));

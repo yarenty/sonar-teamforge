@@ -67,27 +67,28 @@ public class LinkFunctionTest {
 
 
   @Test(expected = IllegalStateException.class)
-  public void should_fail_execute_if_remote_problem() throws Exception {
+  public void givenArtifactCreator_whenRemoteException_thenThrowIllegalStateException() throws Exception { 
+	  //TODO: why??
     when(tfArtifactCreator.createArtifact(sonarIssue, settings)).thenThrow(new RemoteException("Server Error"));
 
     function.createTeamForgeArtifact(context);
   }
 
   @Test
-  public void test_create_comment() throws Exception {
+  public void givenLinkFunction_whenCreateComment_thenCommentAdded() throws Exception {
     function.createComment(artifact, context);
 
     verify(context).addComment("Issue linked to TeamForge artifact: 666 link: http://test.url");
   }
   
   @Test
-  public void test_generate_comment_text() throws Exception {
+  public void givenLinkFunction_whenGenerateCommentText_thenCommentFormatted() throws Exception {
     String commentText = function.generateCommentText(artifact, context);
     assertThat(commentText).isEqualTo("Issue linked to TeamForge artifact: 666 link: http://test.url");
   }
 
   @Test
-  public void should_check_settings() {
+  public void givenLinkFunction_whenSetting_thenConditionsMeet() {
     settings.setProperty(TeamForgeConstants.SERVER_URL_PROPERTY, "http://my.server");
     settings.setProperty(TeamForgeConstants.USERNAME_PROPERTY, "john");
     settings.setProperty(TeamForgeConstants.PASSWORD_PROPERTY, "1234");
@@ -103,13 +104,9 @@ public class LinkFunctionTest {
     function.checkConditions(settings);
   }
 
-  @Test
-  public void should_fail_if_settings_is_empty() {
-    try {
+  @Test(expected = IllegalStateException.class)
+  public void givenLinkFunction_whenEmptySettings_thenThrowIllegalStateException() {
       function.checkConditions(settings);
-    } catch (Exception e) {
-      assertThat(e).isInstanceOf(IllegalStateException.class);
-    }
   }
 
 }
