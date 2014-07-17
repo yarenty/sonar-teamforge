@@ -102,7 +102,7 @@ public class TeamForgeArtifactCreator implements ServerExtension {
 
 				if (LOG.isDebugEnabled()) {
 					LOG.debug("CREATED!!:" + artifact.getId() + ">>"
-							+ artifact.getTitle() + "\n Decription:"
+							+ artifact.getTitle() + "\n Description:"
 							+ artifact.getDescription() + "\n url="
 							+ artifact.getURL() + " path=" + artifact.getPath()
 							+ " by " + artifact.getCreatedBy());

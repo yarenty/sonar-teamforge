@@ -15,6 +15,9 @@ import com.collabnet.ce.webservices.CTFArtifact;
 import com.google.common.annotations.VisibleForTesting;
 import com.yarenty.sonar.plugins.teamforge.TeamForgeConstants;
 
+/**
+ *
+ */
 public class LinkFunction implements Function, ServerExtension {
 
 	private final TeamForgeArtifactCreator tfArtifactCreator;
