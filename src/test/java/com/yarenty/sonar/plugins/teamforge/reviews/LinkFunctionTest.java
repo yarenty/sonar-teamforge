@@ -83,7 +83,14 @@ public class LinkFunctionTest {
   
   @Test
   public void givenLinkFunction_whenGenerateCommentText_thenCommentFormatted() throws Exception {
-    String commentText = function.generateCommentText(artifact, context);
+	    artifact = mock(CTFArtifact.class);
+	    artifact.setTitle("FOO-15");
+	    artifact.getURL();
+	    when(artifact.getId()).thenReturn("666");
+	    when(artifact.getDescription()).thenReturn("Test artifact");
+	    when(artifact.getURL()).thenReturn("http://test.url");
+	    
+	  String commentText = function.generateCommentText(artifact, context);
     assertThat(commentText).isEqualTo("Issue linked to TeamForge artifact: 666 link: http://test.url");
   }
 

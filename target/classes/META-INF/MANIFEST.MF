@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: yarenty
+Build-Jdk: 1.7.0_04
+Plugin-Class: com.yarenty.sonar.plugins.teamforge.TeamforgePlugin
+Plugin-Description: Sonar connection to TeamForge
+Plugin-Developers: Jaroslaw Nowosad
+Plugin-Homepage: https://code.google.com/p/sonar-teamforge
+Plugin-IssueTrackerUrl: https://code.google.com/p/sonar-teamforge/issues/list
+Plugin-Key: teamforge
+Plugin-License: GNU LGPL 3
+Plugin-Name: Teamforge Integration
+Plugin-Organization: yarenty
+Plugin-OrganizationUrl: http://www.yarenty.com
+Plugin-SourcesUrl: https://code.google.com/p/sonar-teamforge/source
+Plugin-TermsConditionsUrl: 
+Plugin-Version: 1.0
+Sonar-Version: 3.6
